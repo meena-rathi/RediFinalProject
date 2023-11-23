@@ -57,10 +57,10 @@ urlpatterns = [
     path('', views.signin, name='signin'),
     path('index_view', views.index_view, name='index_view'),
     path('gallery_view/', views.gallery_view, name='gallery_view'),
-    path('signout', views.signout, name='signout'),
+    path('contact_view/', views.contact_view, name='contact_view'),
+    path('success_view/', views.success_view, name='success_view'),
     path('add_to_cart/<int:product_id>/', views.add_to_cart, name='add_to_cart'),
     path('remove_from_cart/<int:cart_item_id>/', views.remove_from_cart, name='remove_from_cart'),
-    # path('update_quantity/<int:cart_item_id>/', views.update_quantity, name='update_quantity'),
     path('update_quantity/<int:cart_item_id>/', views.update_quantity, name='update_quantity'),
     path('cart/', views.cart_view, name='cart_view'),
 ]

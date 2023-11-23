@@ -1,21 +1,22 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js" integrity="sha384-vuFJ2JiSdUpXLKGK+tDteQZBqNlMwAjhZ3TvPaDfN9QmbPb7Q8qUpbSNapQev3YF" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
-
     <title>shopping!</title>
 </head>
 <body>
-     
+   
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
+        <!-- <a class="navbar-brand" href="{% url 'index_view' %}">My App</a> -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,34 +36,30 @@
         </div>
     </div>
 </nav>
-   <div class = "price">
+<div class  ="contact">
+<form method="GET" action="{% url 'success_view' %}">
+    {% csrf_token %}
+    <div id="data_field">
+    <label for="id_first_name">First Name:</label>
+    <div class="email">
+        <input type="text" id="id_first_name" name="first_name" required>
+        </div><br>
 
-    {% for item in cart_items %}
-    <div class="cart-item">
-        <img src="{{ item.product.photo.url }}" alt="{{ item.product.title }}">
-        <div class="cart-item-details">
-            <h2>{{ item.product.title }}</h2>
-            <p>Price: ${{ item.product.price }}</p>
-            <!-- Add other details as needed -->
-        </div>
-        <div class="cart-item-actions">
-            <form action="{% url 'update_quantity' cart_item_id=item.id %}" method="POST">
-                {% csrf_token %}
-                <select name="quantity" onchange="this.form.submit()">
-                  {% for x in quantity_range %}
-                      <option value="{{ x }}" {% if x == item.quantity %}selected{% endif %}>{{ x }}</option>
-                  {% endfor %}
-              </select>
-               
-            </form>
-            <a href="{% url 'remove_from_cart' cart_item_id=item.id %}">Remove</a>
-        </div>
-    </div>
-    {% endfor %}
-    <div class="total_price">
-        <p>Total: ${{ total_price }}</p>
-    </div>
+    <label for="id_last_name">Last Name:</label>
+    <div class="email"><input type="text" id="id_last_name" name="last_name" required>
+        </div><br>
 
+    <label for="id_email">Email:</label>
+    <div class="email">
+        <input type="email" id="id_email" name="email" required>
+    </div><br>
+
+    <label for="id_description">Description:</label><br>
+    <textarea id="id_description" name="description" rows="4" cols="50" required></textarea><br><br>
+
+    <input type="submit" value="Submit">
+</div>
+</form>
 </div>
 
     <footer>
@@ -109,24 +106,6 @@
           </li>
         </ul>
     </footer>
-    <div class="container mt-4">
-        {% block content %}{% endblock %}
-    </div>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    
-    </body>
-    </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
